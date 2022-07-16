@@ -22,5 +22,12 @@ class DemoParser(BaseParser):
         return content
 ```
 
+### Directories
+wireshark-dumper  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;--&nbsp; `parsers` &nbsp; put the parser classes  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;--&nbsp; `common` &nbsp;&nbsp;&nbsp; some common components  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;--&nbsp; `dumps` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; where you put the dump files  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;--&nbsp; `result` &nbsp;&nbsp;&nbsp; the result file is created in here
+
 ### Run
 The program entry was `start.py`, just python it.

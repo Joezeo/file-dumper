@@ -38,4 +38,4 @@ if __name__ == '__main__':
         for parser in parser_set:
             if parser.foucsThis(filename=filename):
                 content = parser.parse(filename=os.path.join(abs_dump_file_path, filename))
-                parser.writeResult(filename, content)
+                parser.writeResult(os.path.join(abs_dump_file_path, filename), content)

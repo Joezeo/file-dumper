@@ -40,6 +40,5 @@ class BaseParser():
             if idx < len(split) - 2:
                 final_path += sp + "\\"
                 idx += 1
-        filename = final_path + "result\\" + filename + ".txt"
-        with open(filename, 'w', encoding='utf-8') as file:
+        with open(f"{final_path}\\result\\{filename}.txt", 'w', encoding='utf-8') as file:
             file.write(content)
