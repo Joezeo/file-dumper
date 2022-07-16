@@ -4,11 +4,11 @@ Parse the network paceket capture result dump file from wireshark.
 
 ### Directories
 
-wireshark-dumper  
-|&nbsp;--&nbsp; `parsers` &nbsp; put the parser classes  
-|&nbsp;--&nbsp; `common` &nbsp;&nbsp;&nbsp; some common components  
-|&nbsp;--&nbsp; `dumps` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; where you put the dump files  
-|&nbsp;--&nbsp; `result` &nbsp;&nbsp;&nbsp; the result file is created in here
+***wireshark-dumper***  
+|&nbsp;--&nbsp; `dumps  ` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; where you put the dump files  
+|&nbsp;--&nbsp; `result ` &nbsp;&nbsp;&nbsp; the result file is created in here  
+|&nbsp;--&nbsp; `parsers` &nbsp;&nbsp; create parser classes here  
+|&nbsp;--&nbsp; `common ` &nbsp;&nbsp;&nbsp; some common components  
 
 ### Usage
 
