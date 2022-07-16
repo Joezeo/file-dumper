@@ -10,11 +10,12 @@ from tokenize import String
 class BaseParser():
 
     '''
-    According to the filename to open a file using utf-8 charset and return the string content of this file.
+    According to the filename to open a file using utf-8 charset 
+    and return the string content of this file.
     '''
 
     def openFile(self, filename) -> String:
-        if filename == None:
+        if filename is None:
             print("Foucus nothing.")
             return None
         return open(filename, encoding='utf-8').read()
@@ -45,5 +46,6 @@ class BaseParser():
             if idx < len(split) - 2:
                 final_path += sp + "\\"
                 idx += 1
-        with open(f"{final_path}\\result\\{filename}.txt", 'w', encoding='utf-8') as file:
+        filename = f"{final_path}\\result\\{filename}.txt"
+        with open(filename, 'w', encoding='utf-8') as file:
             file.write(content)
