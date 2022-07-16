@@ -4,8 +4,6 @@
 # @email   : joezane.cn@gmail.com
 # @version : v1.0
 
-from tokenize import String
-
 
 class BaseParser():
 
@@ -14,7 +12,7 @@ class BaseParser():
     and return the string content of this file.
     '''
 
-    def openFile(self, filename) -> String:
+    def openFile(self, filename) -> str:
         if filename is None:
             print("Foucus nothing.")
             return None

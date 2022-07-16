@@ -6,7 +6,6 @@
 
 import json
 
-from tokenize import String
 from common.base_parser import BaseParser
 
 
@@ -23,7 +22,7 @@ class MoshJsonParser(BaseParser):
     Every parser should add this method to process dump file content
     '''
 
-    def parse(self, filename) -> String:
+    def parse(self, filename) -> str:
         file_content = self.openFile(filename)
         file_json = json.loads(file_content)
         content = ""
