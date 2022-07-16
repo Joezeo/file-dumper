@@ -30,12 +30,15 @@ if __name__ == '__main__':
         mod = sys.modules[parser_path]
         members = inspect.getmembers(mod, inspect.isclass)
         for (name, clazz) in members:
-            if (name == "BaseParser"): continue
+            if (name == "BaseParser"):
+                continue
             parser_set.append(clazz())
 
-    abs_dump_file_path = os.path.join(abs_project_path, base_file_path);
+    abs_dump_file_path = os.path.join(abs_project_path, base_file_path)
     for filename in os.listdir(abs_dump_file_path):
         for parser in parser_set:
             if parser.foucsThis(filename=filename):
-                content = parser.parse(filename=os.path.join(abs_dump_file_path, filename))
-                parser.writeResult(os.path.join(abs_dump_file_path, filename), content)
+                content = parser.parse(filename=os.path.join(
+                    abs_dump_file_path, filename))
+                parser.writeResult(os.path.join(
+                    abs_dump_file_path, filename), content)
