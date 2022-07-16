@@ -9,7 +9,7 @@ import json
 from common.base_parser import BaseParser
 
 
-class MoshJsonParser(BaseParser):
+class UdpPayloadParser(BaseParser):
 
     '''
     What's the dump files should this parser deal with
