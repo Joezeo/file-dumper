@@ -15,9 +15,11 @@ sys.path.append(os.path.join(abs_project_path, "parsers"))
 
 parsers_path_set = []
 
-for importer, modname, ispkg in pkgutil.walk_packages(path=[os.path.join(abs_project_path, "parsers")],
-                                                      prefix="parsers.",
-                                                      onerror=lambda x: None):
+for importer, modname, ispkg in pkgutil.walk_packages(
+    path=[os.path.join(abs_project_path, "parsers")],
+    prefix="parsers.",
+    onerror=lambda x: None
+):
     exec('from ' + modname + ' import *')
     parsers_path_set.append(modname)
 
@@ -38,7 +40,8 @@ if __name__ == '__main__':
     for filename in os.listdir(abs_dump_file_path):
         for parser in parser_set:
             if parser.foucsThis(filename=filename):
-                content = parser.parse(filename=os.path.join(
-                    abs_dump_file_path, filename))
+                filename = os.path.join(abs_dump_file_path, filename)
+                file = parser.openFile(filename)
+                content = parser.parse(filename, file)
                 parser.writeResult(os.path.join(
                     abs_dump_file_path, filename), content)

@@ -20,11 +20,13 @@ class MoshJsonParser(BaseParser):
 
     '''
     Every parser should add this method to process dump file content
+
+    @param: filename: current processing file's name
+    @param: file: current processing file's content
     '''
 
-    def parse(self, filename) -> str:
-        file_content = self.openFile(filename)
-        file_json = json.loads(file_content)
+    def parse(self, filename, file) -> str:
+        file_json = json.loads(file)
         content = ""
         for udp_packet in file_json:
             source_layers = udp_packet["_source"]["layers"]
