@@ -1,2 +1,2 @@
 # wireshark-dumper
-Parse the JSON result file from wireshark. 
+Parse the network paceket capture result dump file from wireshark. 
