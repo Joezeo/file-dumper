@@ -37,4 +37,5 @@ if __name__ == '__main__':
     for filename in os.listdir(abs_dump_file_path):
         for parser in parser_set:
             if parser.foucsThis(filename=filename):
-                parser.parse(filename=os.path.join(abs_dump_file_path, filename))
+                content = parser.parse(filename=os.path.join(abs_dump_file_path, filename))
+                parser.writeResult(filename, content)
