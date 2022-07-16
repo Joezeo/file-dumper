@@ -10,7 +10,7 @@ from tokenize import String
 class BaseParser():
 
     '''
-    According to the filename to open a file using utf-8 charset 
+    According to the filename to open a file using utf-8 charset
     and return the string content of this file.
     '''
 
