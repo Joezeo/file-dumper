@@ -1,6 +1,6 @@
 # file-dumper
 
-Parse one certain dump file to another result file according to certain rules.
+In the work, there are a lot of requirements to convert one file into another. `File-dumper` separates the file reading and writing operations, so that you can only focus on the processing logic.
 
 ### Directories
 
