@@ -34,7 +34,7 @@ if __name__ == '__main__':
         for (name, clazz) in members:
             if (name == "BaseParser"):
                 continue
-            parser_set.append(clazz())
+            parser_set.append(clazz(abs_project_path))
 
     abs_dump_file_path = os.path.join(abs_project_path, base_file_path)
     for filename in os.listdir(abs_dump_file_path):

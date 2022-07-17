@@ -25,7 +25,7 @@ class WiresharkUdpPayloadParser(BaseParser):
     @param: file: current processing file's content
     '''
 
-    def parse(self, filename, file) -> str:
+    def parse(self, filename: str, file: str) -> str:
         file_json = json.loads(file)
         content = ""
         for udp_packet in file_json:
