@@ -12,7 +12,7 @@ In the work, there are a lot of requirements to convert one file into another. `
 
 ### Usage
 
-Create parser extend `common.base_parser.BaseParser`, and this parser class should have a method called `parse(filename, file) -> str` to process the dump file and return the process result automatically saving in a result file with the same name with dump file. This class should also have the list attribute called `focus` to specify the files to be processed. Just like this:
+Create parser extend `common.base_parser.BaseParser`, and this parser class should have a method called `parse(filename, file) -> str` to process the dump file and return the process result which automatically saving in a result file with the same name with dump file. This class should also have the attribute called `focus`(type of array) to specify the files to be processed. Just like this:
 
 ```python
 class DemoParser(BaseParser):
