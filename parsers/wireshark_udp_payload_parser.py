@@ -35,8 +35,7 @@ class WiresharkUdpPayloadParser(BaseParser):
                     and source_layers["ssyncp"]["ssyncp.direction"] == "0") \
                     or ("ssyncp" not in source_layers
                         and source_layers["ip"]["ip.src"] == "26.26.26.1"):
-                content += "\"" + \
-                    source_layers["udp"]["udp.payload"] + "\"" + ",\n"
+                content += f"\"{source_layers['udp']['udp.payload']}\",\n"
 
         content = content[:len(content)-2]
         return content
