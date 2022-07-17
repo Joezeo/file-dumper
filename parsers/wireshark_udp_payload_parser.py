@@ -15,7 +15,7 @@ class WiresharkUdpPayloadParser(BaseParser):
     What's the dump files should this parser deal with
     '''
     foucs = [
-        "tab_accomplish_l.json"
+        "mosh_udp_playload_1.json"
     ]
 
     '''
@@ -31,7 +31,10 @@ class WiresharkUdpPayloadParser(BaseParser):
         for udp_packet in file_json:
             source_layers = udp_packet["_source"]["layers"]
             # 0:client-server 1:server-client
-            if source_layers["ssyncp"]["ssyncp.direction"] == "0":
+            if ("ssyncp" in source_layers > 0
+                    and source_layers["ssyncp"]["ssyncp.direction"] == "0") \
+                    or ("ssyncp" not in source_layers
+                        and source_layers["ip"]["ip.src"] == "26.26.26.1"):
                 content += "\"" + \
                     source_layers["udp"]["udp.payload"] + "\"" + ",\n"
 
