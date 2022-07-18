@@ -11,7 +11,8 @@ import pkgutil
 import logging
 from concurrent.futures import ThreadPoolExecutor
 
-base_file_path = "dumps"
+source_file_path = "dumps"
+result_file_path = "result"
 abs_project_path = os.path.dirname(__file__)
 parsers_path_set = []
 theard_pool = ThreadPoolExecutor(
@@ -35,7 +36,6 @@ for importer, modname, ispkg in pkgutil.walk_packages(
 
 
 def _start_parser(parser, filename) -> None:
-    filename = os.path.join(abs_dump_file_path, filename)
     file = parser._open_file(filename)
     content = parser.parse(filename, file)
     parser._write_result(os.path.join(abs_dump_file_path, filename), content)
@@ -49,9 +49,11 @@ if __name__ == '__main__':
         for (name, clazz) in members:
             if (name == "BaseParser"):
                 continue
-            parser_set.append(clazz(abs_project_path))
+            parser_set.append(
+                clazz(abs_project_path, source_file_path, result_file_path)
+            )
 
-    abs_dump_file_path = os.path.join(abs_project_path, base_file_path)
+    abs_dump_file_path = os.path.join(abs_project_path, source_file_path)
     for filename in os.listdir(abs_dump_file_path):
         for parser in parser_set:
             if parser._foucs_this(filename=filename):
