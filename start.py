@@ -8,13 +8,23 @@ import inspect
 import os
 import sys
 import pkgutil
+import logging
+from concurrent.futures import ThreadPoolExecutor
 
+base_file_path = "dumps"
 abs_project_path = os.path.dirname(__file__)
+parsers_path_set = []
+theard_pool = ThreadPoolExecutor(
+    max_workers=10,
+    thread_name_prefix="parser.thread."
+)
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
+
 sys.path.append(os.path.join(abs_project_path, "common"))
 sys.path.append(os.path.join(abs_project_path, "parsers"))
-
-parsers_path_set = []
-
 for importer, modname, ispkg in pkgutil.walk_packages(
     path=[os.path.join(abs_project_path, "parsers")],
     prefix="parsers.",
@@ -24,7 +34,12 @@ for importer, modname, ispkg in pkgutil.walk_packages(
     parsers_path_set.append(modname)
 
 
-base_file_path = "dumps"
+def _start_parser(parser, filename) -> None:
+    filename = os.path.join(abs_dump_file_path, filename)
+    file = parser._open_file(filename)
+    content = parser.parse(filename, file)
+    parser._write_result(os.path.join(abs_dump_file_path, filename), content)
+
 
 if __name__ == '__main__':
     parser_set = []
@@ -39,9 +54,5 @@ if __name__ == '__main__':
     abs_dump_file_path = os.path.join(abs_project_path, base_file_path)
     for filename in os.listdir(abs_dump_file_path):
         for parser in parser_set:
-            if parser.foucsThis(filename=filename):
-                filename = os.path.join(abs_dump_file_path, filename)
-                file = parser.openFile(filename)
-                content = parser.parse(filename, file)
-                parser.writeResult(os.path.join(
-                    abs_dump_file_path, filename), content)
+            if parser._foucs_this(filename=filename):
+                theard_pool.submit(_start_parser, parser, filename)

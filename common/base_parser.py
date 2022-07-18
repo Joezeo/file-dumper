@@ -4,6 +4,10 @@
 # @email   : joezane.cn@gmail.com
 # @version : v1.0
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 class BaseParser:
     def __init__(self, project_path: str):
@@ -14,32 +18,42 @@ class BaseParser:
     and return the string content of this file.
     '''
 
-    def openFile(self, filename: str) -> str:
+    def _open_file(self, filename: str) -> str:
         if filename is None:
-            print("Foucus nothing.")
+            logger.warning("filename is none.")
             return None
+        logger.info(f"starting reading file: {filename}")
         return open(filename, encoding='utf-8').read()
 
     '''
     Judge whether the parser foucus on and processing this dump file or not.
     '''
 
-    def foucsThis(self, filename: str) -> bool:
+    def _foucs_this(self, filename: str) -> bool:
         if not hasattr(self, "foucs"):
             return
         foucs = eval('self.foucs')
-        for fc in foucs:
-            if fc == filename:
-                return True
+        for focus in foucs:
+            if "*" in focus:
+                if focus[0] == "*" or focus[-1] == "*":
+                    continue
+                s = focus.split("*")
+                if (s[0] in filename) and (s[1] is None or s[1] in filename) \
+                        and focus.index(s[0][-1]) < focus.index(s[1][0]):
+                    return True
+            else:
+                if focus == filename:
+                    return True
         return False
 
     '''
     Write the processing result in certain file.
     '''
 
-    def writeResult(self, filename: str, content: str) -> None:
+    def _write_result(self, filename: str, content: str) -> None:
         split = filename.split("\\")
         filename = split[len(split) - 1].split(".")[0]
         filename = f"{self._project_path}\\result\\{filename}.txt"
+        logger.info(f"writing processing result to file: {filename}")
         with open(filename, 'w', encoding='utf-8') as file:
             file.write(content)

@@ -15,7 +15,7 @@ class WiresharkUdpPayloadParser(BaseParser):
     What's the dump files should this parser deal with
     '''
     foucs = [
-        "mosh_udp_playload_1.json"
+        "mosh_udp_playload_*.json"
     ]
 
     '''
