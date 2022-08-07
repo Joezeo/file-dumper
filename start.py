@@ -49,6 +49,8 @@ if __name__ == '__main__':
         for (name, clazz) in members:
             if (name == "BaseParser"):
                 continue
+            if ("Parser" not in name):
+                continue
             parser_set.append(
                 clazz(abs_project_path, source_file_path, result_file_path)
             )
