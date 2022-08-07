@@ -27,7 +27,8 @@ class WiresharkUdpPayloadParser(BaseParser):
 
     def parse(self, filename: str, file: str) -> str:
         file_json = json.loads(file)
-        content = ""
+        server, client = "\nserver:\n", "client:\n"
+
         for udp_packet in file_json:
             source_layers = udp_packet["_source"]["layers"]
             # 0:client-server 1:server-client
@@ -35,7 +36,12 @@ class WiresharkUdpPayloadParser(BaseParser):
                     and source_layers["ssyncp"]["ssyncp.direction"] == "0") \
                     or ("ssyncp" not in source_layers
                         and source_layers["ip"]["ip.src"] == "26.26.26.1"):
-                content += f"\"{source_layers['udp']['udp.payload']}\",\n"
+                client += f"\"{source_layers['udp']['udp.payload']}\",\n"
+            if ("ssyncp" in source_layers
+                    and source_layers["ssyncp"]["ssyncp.direction"] == "1") \
+                    or ("ssyncp" not in source_layers
+                        and source_layers["ip"]["ip.dst"] == "26.26.26.1"):
+                server += f"\"{source_layers['udp']['udp.payload']}\",\n"
 
-        content = content[:len(content)-2]
+        content = client[:len(client) - 2] + server[:len(server) - 2]
         return content
