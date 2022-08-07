@@ -7,7 +7,7 @@ class ColorPanelHtmlParser(BaseParser):
     What's the dump files should this parser deal with
     '''
     foucs = [
-        "color_panel.html"
+        "color_panel.txt"
     ]
 
     '''
