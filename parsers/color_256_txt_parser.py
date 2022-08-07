@@ -20,6 +20,13 @@ class Color256TxtParser(BaseParser):
         content = ""
         idx = 0
         for color in file.split("\n"):
-            content += f"C_{idx}({idx}, \"{color}\"),\n"
+            rgb = self.hex_to_rgb(color)
+            content += f"C_{idx}({idx}, \"{color}\", \"{rgb}\"),\n"
             idx += 1
         return content
+
+    def hex_to_rgb(self, value: str) -> str:
+        v = value.lstrip('#')
+        s = "{}".format(tuple(int(v[i:i+2], 16) for i in (0, 2, 4)))
+        s = s.replace(",", "").replace("(", "").replace(")", "")
+        return s
