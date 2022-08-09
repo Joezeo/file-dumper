@@ -22,6 +22,7 @@ class ColorPanelHtmlParser(BaseParser):
         content = ""
         for tr in soup.find_all("tr"):
             td = tr.find_all("td")
-            name, rgb, hex = td[1].string, td[2].string, td[3].string
+            name, rgb, hex = td[1].string,\
+                td[2].string[0:len(td[2].string)-1], td[3].string
             content += f"{name}(\"{name}\", \"{rgb}\", \"{hex}\"),\n"
         return content
